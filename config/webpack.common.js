@@ -15,16 +15,10 @@ module.exports = {
   },
 
   module: {
-    rules: [
+    loaders: [
       {
         test: /\.ts$/,
-        loaders: [
-          {
-            loader: 'awesome-typescript-loader',
-            options: { configFileName: helpers.root('src', 'tsconfig.json') }
-          },
-          'angular2-template-loader'
-        ]
+        loaders: ['awesome-typescript-loader', 'angular2-template-loader']
       },
       {
         test: /\.html$/,
@@ -35,14 +29,17 @@ module.exports = {
         loader: 'file-loader?name=assets/[name].[hash].[ext]'
       },
       {
-        test: /\.css$/,
+        test: /\.s?css$/,
         exclude: helpers.root('src', 'app'),
-        loader: ExtractTextPlugin.extract({ fallbackLoader: 'style-loader', loader: 'css-loader?sourceMap' })
+        loader: ExtractTextPlugin.extract({
+          fallbackLoader: 'style-loader',
+          loader: ['css-loader?sourceMap', 'sass-loader'] 
+        })
       },
       {
-        test: /\.css$/,
+        test: /\.s?css$/,
         include: helpers.root('src', 'app'),
-        loader: 'raw-loader'
+        loaders: ['raw-loader', 'sass-loader']
       }
     ]
   },
