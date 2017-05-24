@@ -33,7 +33,7 @@ module.exports = {
         exclude: helpers.root('src', 'app'),
         loader: ExtractTextPlugin.extract({
           fallbackLoader: 'style-loader',
-          loader: ['css-loader?sourceMap', 'sass-loader'] 
+          loader: ['css-loader?sourceMap', 'sass-loader']
         })
       },
       {
